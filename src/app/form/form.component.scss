@@ -142,3 +142,25 @@ form {
     }
   }
 }
+
+@media (max-width: 800px) {
+  form {
+    fieldset {
+      display: block;
+
+      label {
+        width: 100%;
+
+        + label {
+          margin-top: 2rem;
+        }
+      }
+    }
+
+    .submit {
+      button {
+        min-width: auto;
+      }
+    }
+  }
+}

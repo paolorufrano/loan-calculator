@@ -9,3 +9,10 @@ h1 {
   margin: 1rem 0rem;
   margin-left: 0.5rem;
 }
+
+@media (max-width: 800px) {
+  .container {
+    width: 100%;
+    padding: 2rem;
+  }
+}
