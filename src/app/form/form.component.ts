@@ -61,14 +61,16 @@ export class FormComponent implements OnInit {
     this.clearErrors()
 
     const { monthlyIncome, requestedAmount, loanTerm, children, coapplicant } = this.loanForm.value
+    const url = environment.production
+      ? 'https://homework.fdp.workers.dev/'
+      : 'http://localhost:8010/proxy'
+    const apiKey = 'swb-222222'
 
     await axios({
       method: 'post',
-      url: environment.production
-        ? 'https://homework.fdp.workers.dev/'
-        : 'http://localhost:8010/proxy',
+      url,
       headers: {
-        'X-API-KEY': 'swb-222222',
+        'X-API-KEY': apiKey,
       },
       data: {
         monthlyIncome: formatAmount(monthlyIncome),
@@ -99,7 +101,7 @@ export class FormComponent implements OnInit {
         }
 
         const { fields } = error.response.data
-        this.globalError = 'Please see errors above'
+        this.globalError = 'Please see error(s) above'
 
         if (fields.length) {
           fields.forEach((field: ErrorFieldResponse) => {

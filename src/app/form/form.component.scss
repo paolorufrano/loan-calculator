@@ -44,6 +44,7 @@ form {
       width: 100%;
       padding: 1rem;
       border: 0.1rem solid #121212;
+      background: #fff;
 
       &::-webkit-outer-spin-button,
       &::-webkit-inner-spin-button {
@@ -60,6 +61,7 @@ form {
       width: 100%;
       padding: 1rem;
       border: 0.1rem solid #121212;
+      background: #fff;
     }
 
     &.error {
@@ -101,19 +103,26 @@ form {
     margin-top: 4rem;
 
     button {
-      color: #fff;
+      position: relative;
       font-weight: 700;
       padding: 1.5rem 2rem;
       background: cornflowerblue;
-      border-radius: 0.3rem;
+      border: 0.1rem solid #121212;
+      min-width: 15rem;
+      transition: all ease-in-out 0.2s;
 
       &.secondary {
         background: #d3d3d3;
-        color: #000;
+        color: #121212;
       }
 
       + button {
         margin-left: 2rem;
+      }
+
+      &:hover {
+        box-shadow: 0 0.2rem 1.4rem 0 rgba(0, 0, 0, 0.2);
+        margin-top: -0.2rem;
       }
     }
   }

@@ -1,27 +1,27 @@
 <form [formGroup]="loanForm" (ngSubmit)="onSubmit()">
-  <label for="income" [ngClass]="{ error: getError('monthlyIncome') }">
-    <span>Monthly Income</span>
-    <input
-      type="number"
-      name="income"
-      id="income"
-      [min]="incomeMin"
-      formControlName="monthlyIncome"
-      required
-    />
-    <span *ngIf="getError('monthlyIncome')" class="error">{{ getError('monthlyIncome') }}</span>
-  </label>
   <label for="amount" [ngClass]="{ error: getError('requestedAmount') }">
-    <span>Amount to borrow</span>
+    <span>Loan amount</span>
     <input
       type="number"
       name="amount"
-      id="amount"
+      id="requestedAmount"
       [min]="amountMin"
       formControlName="requestedAmount"
       required
     />
     <span *ngIf="getError('requestedAmount')" class="error">{{ getError('requestedAmount') }}</span>
+  </label>
+  <label for="monthlyIncome" [ngClass]="{ error: getError('monthlyIncome') }">
+    <span>Monthly Income</span>
+    <input
+      type="number"
+      name="income"
+      id="monthlyIncome"
+      [min]="incomeMin"
+      formControlName="monthlyIncome"
+      required
+    />
+    <span *ngIf="getError('monthlyIncome')" class="error">{{ getError('monthlyIncome') }}</span>
   </label>
   <label for="loanTerm">
     <span>Loan term - {{ loanForm.value.loanTerm }} Months</span>
@@ -68,7 +68,9 @@
     </dl>
   </div>
   <div class="submit">
-    <button type="submit" [disabled]="loading">Submit</button>
-    <button type="button" class="secondary" (click)="onReset()">Start Again</button>
+    <button type="submit" class="primary" [disabled]="loading">Submit</button>
+    <button type="button" class="secondary" [disabled]="loading" (click)="onReset()">
+      Start Again
+    </button>
   </div>
 </form>
