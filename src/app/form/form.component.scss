@@ -1,0 +1,135 @@
+form {
+  padding: 2rem;
+  background: #fafafa;
+  border: 0.1rem solid #121212;
+  box-shadow: 0 0.2rem 1.4rem 0 rgba(0, 0, 0, 0.1);
+
+  fieldset {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    label {
+      width: calc(50% - 1rem);
+    }
+
+    label + label {
+      margin-top: 0;
+    }
+  }
+
+  label {
+    width: 100%;
+    display: block;
+
+    + label,
+    + fieldset {
+      margin-top: 2rem;
+    }
+
+    span {
+      display: block;
+      margin-bottom: 0.5rem;
+      margin-left: 0.3rem;
+      font-weight: 600;
+
+      &.error {
+        margin-top: 0.5rem;
+        font-weight: normal;
+        text-align: right;
+      }
+    }
+
+    input {
+      width: 100%;
+      padding: 1rem;
+      border: 0.1rem solid #121212;
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      &[type='number'] {
+        -moz-appearance: textfield;
+      }
+    }
+
+    select {
+      width: 100%;
+      padding: 1rem;
+      border: 0.1rem solid #121212;
+    }
+
+    &.error {
+      input,
+      select {
+        border: 0.1rem solid coral;
+      }
+
+      span {
+        color: coral;
+
+        &.error {
+          color: #121212;
+        }
+      }
+    }
+  }
+
+  .global-error {
+    background: rgba(255, 128, 81, 0.6);
+    border: 0.1rem solid #121212;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+
+    .icon {
+      font-size: 2.6rem;
+      line-height: 2.6rem;
+      margin-right: 1rem;
+    }
+  }
+
+  .submit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4rem;
+
+    button {
+      color: #fff;
+      font-weight: 700;
+      padding: 1.5rem 2rem;
+      background: cornflowerblue;
+      border-radius: 0.3rem;
+
+      &.secondary {
+        background: #d3d3d3;
+        color: #000;
+      }
+
+      + button {
+        margin-left: 2rem;
+      }
+    }
+  }
+
+  .success-block {
+    padding: 2rem;
+    background: papayawhip;
+    border: 0.1rem solid #121212;
+    margin-top: 2rem;
+
+    dl + dl {
+      margin-top: 1rem;
+    }
+
+    dt {
+      font-weight: 600;
+    }
+  }
+}

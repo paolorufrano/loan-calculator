@@ -1,0 +1,74 @@
+<form [formGroup]="loanForm" (ngSubmit)="onSubmit()">
+  <label for="income" [ngClass]="{ error: getError('monthlyIncome') }">
+    <span>Monthly Income</span>
+    <input
+      type="number"
+      name="income"
+      id="income"
+      [min]="incomeMin"
+      formControlName="monthlyIncome"
+      required
+    />
+    <span *ngIf="getError('monthlyIncome')" class="error">{{ getError('monthlyIncome') }}</span>
+  </label>
+  <label for="amount" [ngClass]="{ error: getError('requestedAmount') }">
+    <span>Amount to borrow</span>
+    <input
+      type="number"
+      name="amount"
+      id="amount"
+      [min]="amountMin"
+      formControlName="requestedAmount"
+      required
+    />
+    <span *ngIf="getError('requestedAmount')" class="error">{{ getError('requestedAmount') }}</span>
+  </label>
+  <label for="loanTerm">
+    <span>Loan term - {{ loanForm.value.loanTerm }} Months</span>
+    <input
+      type="range"
+      [min]="loanTerm.min"
+      [max]="loanTerm.max"
+      name="loanTerm"
+      id="loanTerm"
+      formControlName="loanTerm"
+      required
+    />
+  </label>
+  <fieldset>
+    <label for="children">
+      <span>Children</span>
+      <select name="children" id="children" formControlName="children" required>
+        <option *ngFor="let child of childrenOptions" [value]="child">
+          {{ sanitizeSelect(child) }}
+        </option>
+      </select>
+    </label>
+    <label for="coapplicant">
+      <span>Co Applicant</span>
+      <select name="coapplicant" id="coapplicant" formControlName="coapplicant" required>
+        <option *ngFor="let coApp of coapplicantOptions" [value]="coApp">
+          {{ sanitizeSelect(coApp) }}
+        </option>
+      </select>
+    </label>
+  </fieldset>
+  <p *ngIf="globalError" class="global-error">
+    <span class="icon">🚨</span>
+    {{ globalError }}
+  </p>
+  <div *ngIf="final.loanAmount && final.interestRate" class="success-block">
+    <dl>
+      <dt>Loan Amount:</dt>
+      <dd>{{ formatCurrency(final.loanAmount) }}</dd>
+    </dl>
+    <dl>
+      <dt>Interest Rate:</dt>
+      <dd>{{ interestRatePercentage(final.interestRate) }}</dd>
+    </dl>
+  </div>
+  <div class="submit">
+    <button type="submit" [disabled]="loading">Submit</button>
+    <button type="button" class="secondary" (click)="onReset()">Start Again</button>
+  </div>
+</form>
